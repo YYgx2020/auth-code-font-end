@@ -1,28 +1,45 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import generateAntiFakeCode from './utils/generateAntiFakeCode';
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  created() {
+    console.log(generateAntiFakeCode());
   }
 }
 </script>
 
 <style>
+* {
+  margin: 0;
+  padding: 0;
+}
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 60px; */
+  display: flex;
+  justify-content: center;
+  /* justify-items: center; */
+  /* align-items: center; */
+  align-content: center;
+  text-align: center;
 }
 </style>
+
+<!-- 
+  数据库设计：
+  user 表
+  字段：
+  username
+  password
+  code
+ -->
