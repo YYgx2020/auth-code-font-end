@@ -42,7 +42,6 @@ export default {
   },
   mounted() {
     bus.$on('change_register', res => {
-      console.log("登录组件：", res);
       if (res) {
         this.isShow = true;
       }
@@ -52,28 +51,25 @@ export default {
     handleLogin(formLabelAlign) {
       this.$refs[formLabelAlign].validate((valid) => {
         if (valid) {
-          // alert('submit!');
-          console.log(this.formLabelAlign);
           const {username, password} = this.formLabelAlign;
           login({username, password}).then(res => {
-            console.log(res);
             // 保存用户信息
             localStorage.setItem('userInfo', JSON.stringify(res.data.result));
             this.$message.success(res.data.message);
             this.$router.replace({
               name: 'home',
+              params: {
+                username,
+              }
             });
           }).catch(err => {
-            console.log(err);
           })
         } else {
-          console.log('error submit!!');
           return false;
         }
       });
     },
     handleRegister() {
-      console.log('切换注册组件');
       bus.$emit('change_login', true);
       this.isShow = false;
     }

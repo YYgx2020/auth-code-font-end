@@ -5,12 +5,8 @@
 </template>
 
 <script>
-import generateAntiFakeCode from './utils/generateAntiFakeCode';
 export default {
   name: 'App',
-  created() {
-    console.log(generateAntiFakeCode());
-  }
 }
 </script>
 

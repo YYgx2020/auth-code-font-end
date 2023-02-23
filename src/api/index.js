@@ -35,3 +35,12 @@ export function findUserCode(data) {
     data,
   })
 }
+
+// 获取用户信息
+export function getUserInfo(data) {
+  return axios({
+    url: '/api/user/get',
+    method: 'get',
+    params: data,
+  })
+}

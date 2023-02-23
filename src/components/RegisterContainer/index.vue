@@ -51,7 +51,6 @@ export default {
   },
   mounted() {
     bus.$on('change_login', res => {
-      console.log("注册组件：", res);
       if (res) {
         this.isShow = true;
       }
@@ -61,8 +60,6 @@ export default {
     handleRegister(formLabelAlign) {
       this.$refs[formLabelAlign].validate((valid) => {
         if (valid) {
-          // alert('submit!');
-          console.log(this.formLabelAlign);
           const { username, password, password_again } = this.formLabelAlign;
           if (password !== password_again) {
             this.$message.error('两次输入的密码不一致');
@@ -70,22 +67,21 @@ export default {
           }
           // 开始注册
           register({username, password}).then(res => {
-            console.log(res);
             this.$message.success('用户注册成功！正在跳转至首页');
             this.$router.replace({
               name: 'home',
+              params: {
+                username,
+              }
             })
           }).catch(err => {
-            console.log(err);
           })
         } else {
-          console.log('error submit!!');
           return false;
         }
       });
     },
     handleLogin() {
-      console.log('切换登录组件');
       // this.isShow = false;
       bus.$emit('change_register', true);
       this.isShow = false;
